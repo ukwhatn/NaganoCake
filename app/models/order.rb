@@ -35,5 +35,7 @@ class Order < ApplicationRecord
   # メソッド
   # -------------
 
-  # 定義なし
+  def full_address
+    "〒" + postal_code + " " + address
+  end
 end

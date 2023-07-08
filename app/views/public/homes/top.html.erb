@@ -1,1 +1,39 @@
-top page content
+<div class="row">
+  <div class="col-12 col-lg-8 offset-lg-2">
+    <div class="top-cover d-flex justify-content-center align-items-center">
+      <div class="top-cover-content">
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。<br>
+      </div>
+    </div>
+
+
+    <h2 class="mt-5">
+      新着商品
+    </h2>
+
+    <div class="row my-3">
+      <% @recent_items.each do |item| %>
+        <div class="col-3 d-flex flex-wrap align-content-between">
+          <%= link_to item_path(item), class: "flex-grow-0 flex-shrink-0 w-100" do %>
+            <%= image_tag item.get_image("300x300"), class: "w-100" %>
+          <% end %>
+          <div>
+            <div class="my-1 font-weight-bold">
+              <%= item.name %>
+            </div>
+            <div class="my-1 font-weight-bold">
+              ¥ <%= item.price.to_s(:delimiter) %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-right">
+      <%= link_to "すべての商品を見る >", items_path %>
+    </div>
+
+  </div>
+</div>

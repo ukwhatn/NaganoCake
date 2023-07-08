@@ -1,4 +1,9 @@
 ja:
+  enums:
+    order:
+      payment_method:
+        credit_card: 'クレジットカード'
+        transfer: '銀行振込'
   activerecord:
     errors:
       messages:
@@ -17,6 +22,17 @@ ja:
       admin:
         email: メールアドレス
         password: パスワード
+      customer:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: 姓(カナ)
+        first_name_kana: 名(カナ)
+        email: メールアドレス
+        password: パスワード
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        is_deleted: 退会ステータス
       item:
         name: 商品名
         description: 商品説明

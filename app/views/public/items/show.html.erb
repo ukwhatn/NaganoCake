@@ -1,0 +1,41 @@
+<div class="container-md">
+  <div class="row">
+    <div class="col-md-4 offset-md-1">
+      <%= image_tag @item.get_image("500x500"), class: "d-block mw-100 mx-auto" %>
+    </div>
+    <div class="col-md-6 offset-md-1 mt-3">
+
+      <p class="h4">
+        <%= @item.name %>
+      </p>
+
+      <p class="h5 py-3">
+        <%= @item.description %>
+      </p>
+
+      <p class="py-3">
+        <span class="h4">¥ <%= @item.with_tax_price.to_s(:delimited) %></span> (税込)
+      </p>
+
+      <% if customer_signed_in? %>
+        <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <table class="mt-2">
+            <tbody>
+            <tr>
+              <td class="col-6">
+                <%= f.select :amount, (1..10), { selected: 1 }, { class: "form-control" } %>
+              </td>
+              <td class="col-6">
+                <div class="d-flex justify-content-center">
+                  <%= f.submit "カートに入れる", class: "btn btn-success px-4 py-2" %>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

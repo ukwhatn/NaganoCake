@@ -43,6 +43,10 @@ class Customer < ApplicationRecord
     last_name_kana + " " + first_name_kana
   end
 
+  def full_address
+    "〒" + postal_code + " " + address
+  end
+
   # 顧客がカートに入れた商品の中に、引数で渡された商品が含まれているかを判定するメソッド
   # あればCartItemオブジェクトを返し、なければnilを返す
   def has_in_cart(item)

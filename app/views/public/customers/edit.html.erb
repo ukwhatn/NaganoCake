@@ -1,11 +1,9 @@
 <div class="col-12 col-lg-10 offset-lg-1">
   <h4 class="d-inline-block bg-light px-3 py-2">
-    新規会員登録
+    会員情報編集
   </h4>
 
-
-  <%= render "public/shared/error_messages", resource: resource %>
-
+  <%= render "layouts/error_messages", resource: @customer %>
   <%= form_with model: @customer, url: customer_registration_path do |f| %>
     <div class="row form-group">
       <div class="col-12 col-md-2 mb-sm-n2 col-form-label">
@@ -45,15 +43,6 @@
 
     <div class="row form-group">
       <div class="col-12 col-md-4 col-lg-3">
-        <%= f.label :email, class: "col-form-label" %>
-      </div>
-      <div class="col-12 col-md-8 col-lg-4">
-        <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
-      </div>
-    </div>
-
-    <div class="row form-group">
-      <div class="col-12 col-md-4 col-lg-3">
         <%= f.label :postal_code, "郵便番号 (ハイフンなし)", class: "col-form-label" %>
       </div>
       <div class="col-12 col-md-8 col-lg-4">
@@ -81,28 +70,19 @@
 
     <div class="row form-group">
       <div class="col-12 col-md-4 col-lg-3">
-        <%= f.label :password, class: "col-form-label" %>
-        <% if @minimum_password_length %>
-          (<%= @minimum_password_length %> 文字以上)
-        <% end %>
+        <%= f.label :email, class: "col-form-label" %>
       </div>
       <div class="col-12 col-md-8 col-lg-4">
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
       </div>
     </div>
 
-    <div class="row form-group">
-      <div class="col-12 col-md-4 col-lg-3">
-        <%= f.label :password_confirmation, class: "col-form-label" %>
+    <div class="row form-group mt-4">
+      <div class="col-3 offset-2">
+        <%= f.submit "編集内容を保存", class: "btn btn-success w-100" %>
       </div>
-      <div class="col-12 col-md-8 col-lg-4">
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="row form-group">
-      <div class="col-4 offset-4 mt-4">
-        <%= f.submit "新規登録", class: "btn btn-success w-100" %>
+      <div class="col-3 offset-2">
+        <%= link_to "退会する", unsubscribe_customers_path, class: "btn btn-danger w-100" %>
       </div>
     </div>
 

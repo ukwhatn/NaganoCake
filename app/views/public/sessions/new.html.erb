@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<div class="col-md-8 offset-md-2">
+  <h4 class="d-inline-block bg-light px-3 py-2">
+    ログイン
+  </h4>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="ml-5 mx-4">
+    <h5 class="d-inline-block bg-light my-4 px-3 py-1">
+      会員の方はこちらからログイン
+    </h5>
+    <% if alert.present? %>
+      <div class="alert alert-danger">
+        <%= alert %>
+      </div>
+    <% end %>
+    <%= render "public/shared/error_messages", resource: resource %>
+    <%= form_with model: @customer, url: customer_session_path do |f| %>
+      <div class="form-group row">
+        <%= f.label :email, class: "col-md-4 col-form-label" %>
+        <div class="col-md-8">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <div class="form-group row">
+        <%= f.label :password, class: "col-md-4 col-form-label" %>
+        <div class="col-md-8">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        </div>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="form-group row">
+        <div class="col-md-8 offset-4 mt-4">
+          <%= f.submit "ログイン", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+
+
+    <h5 class="d-inline-block bg-light my-4 px-3 py-1">
+      会員登録がお済みでない方
+    </h5>
+
+    <div class="ml-5">
+      <%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>

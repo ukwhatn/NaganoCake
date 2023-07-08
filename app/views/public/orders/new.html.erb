@@ -1,0 +1,32 @@
+<div class="col-12 col-lg-8 offset-lg-2">
+  <h4 class="d-inline-block bg-light px-3 py-2">
+    注文情報入力
+  </h4>
+  <%= form_with model: @order, url: confirm_orders_path do |f| %>
+    <h5>
+      支払方法
+    </h5>
+    <div class="ml-4">
+      <div class="form-check">
+        <%= f.radio_button :payment_method, "credit_card", checked: true, class: "form-check-input", id: "credit_card" %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], class: "form-check-label", for: "credit_card" %>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :payment_method, "transfer", class: "form-check-input", id: "credit_card" %>
+        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], class: "form-check-label", for: "credit_card" %>
+      </div>
+    </div>
+
+    <h5 class="mt-3">
+      支払方法
+    </h5>
+    <div class="ml-4">
+      <%= @customer.full_address %><br>
+      <%= @customer.full_name %>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <%= f.submit "確認画面へ進む", class: "btn btn-primary px-5 py-2 font-weight-bold" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,73 @@
+<div class="col-12 col-md-6 offset-md-3">
+  <h4 class="d-inline-block bg-light px-3 py-2">
+    マイページ
+  </h4>
+  <div class="d-flex align-items-center my-3">
+    <h5 class="font-weight-bold mb-0">
+      登録情報
+    </h5>
+    <%= link_to edit_customers_path, class: "btn btn-success d-inline-block ml-5" do %>
+      <i class="fa-solid fa-user-pen"></i> 編集する
+    <% end %>
+  </div>
+  <table class="table-bordered w-100">
+    <tbody>
+    <tr>
+      <th class="bg-light p-2">
+        氏名
+      </th>
+      <td class="p-2">
+        <%= @customer.full_name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="bg-light p-2">
+        カナ
+      </th>
+      <td class="p-2">
+        <%= @customer.full_name_kana %>
+      </td>
+    </tr>
+    <tr>
+      <th class="bg-light p-2">
+        郵便番号
+      </th>
+      <td class="p-2">
+        <%= @customer.postal_code %>
+      </td>
+    </tr>
+    <tr>
+      <th class="bg-light p-2">
+        住所
+      </th>
+      <td class="p-2">
+        <%= @customer.address %>
+      </td>
+    </tr>
+    <tr>
+      <th class="bg-light p-2">
+        電話番号
+      </th>
+      <td class="p-2">
+        <%= @customer.postal_code %>
+      </td>
+    </tr>
+    <tr>
+      <th class="bg-light p-2">
+        メールアドレス
+      </th>
+      <td class="p-2">
+        <%= @customer.email %>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="d-flex align-items-center my-3">
+    <h5 class="font-weight-bold mb-0">
+      注文履歴
+    </h5>
+    <%= link_to orders_path, class: "btn btn-primary d-inline-block ml-5" do %>
+      一覧を見る
+    <% end %>
+  </div>
+</div>
