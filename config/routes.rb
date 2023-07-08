@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'top' => 'homes#top'
+    get '/' => 'homes#top'
     resources :items, except: [:destroy]
     resources :customers, only: [:index, :show, :edit, :update]
   end

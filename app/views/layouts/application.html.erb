@@ -1,15 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NaganoCake</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>NaganoCake</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="border-bottom py-3">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <%= link_to root_path, class: "block navbar-brand border px-5 py-2 font-weight-bold rounded" do %>
+      ロゴ
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+
+        <% if admin_signed_in? %>
+
+          <li class="nav-item">
+            <%= link_to admin_items_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              商品一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_customers_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              会員一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to admin_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              注文履歴一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              ログアウト
+            <% end %>
+          </li>
+
+        <% elsif customer_signed_in? %>
+          <li class="nav-item">
+            <%= link_to customers_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              マイページ
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to items_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              商品一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to cart_items_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              カート
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              ログアウト
+            <% end %>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to about_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              About
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to items_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              商品一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to new_customer_registration_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              新規登録
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to new_customer_session_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              ログイン
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main class="min-vh-100 container-md my-4 mx-auto">
+  <%= yield %>
+</main>
+<footer class="text-center">
+  © Infratop Inc. All Rights Reserved.
+</footer>
+</body>
 </html>

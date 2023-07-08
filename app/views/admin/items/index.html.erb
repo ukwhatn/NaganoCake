@@ -1,0 +1,30 @@
+<h4 class="d-inline-block bg-light px-3 py-2">
+  商品一覧
+</h4>
+<div class="float-right">
+  <%= link_to new_admin_item_path, class: "btn btn-primary shadow rounded-circle" do %>
+    <i class="fa-solid fa-plus"></i>
+  <% end %>
+</div>
+<table class="table">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">商品ID</th>
+    <th scope="col">商品名</th>
+    <th scope="col">税抜価格</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @items.each do |item| %>
+    <tr>
+      <th scope="row"><%= item.id %></th>
+      <td><%= link_to item.name, admin_item_path(item) %></td>
+      <td><%= item.price %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+  <%= paginate @items %>
+</div>

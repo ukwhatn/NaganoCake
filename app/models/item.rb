@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   # バリデーション
   # -------------
   validates :name, presence: true
-  validates :introduction, presence: true
+  validates :description, presence: true
   validates :price, presence: true
 
   # (必須ではない)priceは、負の数にならないように0以上の制約をかけることができる
@@ -24,9 +24,7 @@ class Item < ApplicationRecord
   validate :image_type
 
   def image_type
-    if !image.blob
-      errors.add(:image, 'をアップロードしてください')
-    elsif !image.blob.content_type.in?(%('image/jpeg image/png'))
+    if image.blob && !image.blob.content_type.in?(%('image/jpeg image/png'))
       errors.add(:image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
     end
   end
