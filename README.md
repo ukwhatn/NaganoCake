@@ -1,24 +1,15 @@
-# README
+# NaganoCake 解答コード
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## データ投入
 
-Things you may want to cover:
+`rails db:seed`で、以下の処理が自動実行されます。
 
-* Ruby version
+- **管理者アカウントの作成**
+- **10件の顧客アカウントの作成**
+- **15件の商品の作成**
 
-* System dependencies
+※ トップページ・商品一覧への初回アクセス時に、画像のリサイズ処理が走るため、少し時間がかかります。
 
-* Configuration
+## ライセンス
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+画像はすべて[フリー素材ドットコム](https://free-materials.com/)から利用しています。
