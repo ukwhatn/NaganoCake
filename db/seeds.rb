@@ -7,13 +7,49 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # 管理者アカウント作成
-if Admin.count == 0
-  Admin.create!(
+admins = [
+  {
     email: 'admin@dwc.com',
     password: 'admin123'
-  )
+  }
+]
+admins.each do |admin|
+  if Admin.find_by(email: admin[:email]).nil?
+    Admin.create!(admin)
+  end
 end
 
+# 顧客アカウント作成
+customers = {
+  'taro' => %w[太郎 タロウ],
+  'hanako' => %w[花子 ハナコ],
+  'jiro' => %w[次郎 ジロウ],
+  'saburo' => %w[三郎 サブロウ],
+  'shiro' => %w[四郎 シロウ],
+  'goro' => %w[五郎 ゴロウ],
+  'rokuro' => %w[六郎 ロクロウ],
+  'shichiro' => %w[七郎 シチロウ],
+  'hachiro' => %w[八郎 ハチロウ],
+  'kuro' => %w[九郎 クロウ],
+  'juuro' => %w[十郎 ジュウロウ]
+}
+
+customers.each_with_index do |(key, value), i|
+  customer = {
+    email: "#{key}@dwc.com",
+    password: "password",
+    last_name: "めんたー",
+    first_name: value[0],
+    last_name_kana: "メンター",
+    first_name_kana: value[1],
+    postal_code: "12345#{format('%02d', i + 1)}",
+    address: "東京都渋谷区渋谷#{i + 1}-#{i + 1}-#{i + 1}",
+    telephone_number: "090123456#{format('%02d', i + 1)}"
+  }
+  if Customer.find_by(email: customer[:email]).nil?
+    Customer.create!(customer)
+  end
+end
 # Item作成
 items = {
   'butter_cookie' => {

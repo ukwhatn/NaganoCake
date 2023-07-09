@@ -1,10 +1,19 @@
 <div class="col-12 col-lg-10 offset-lg-1">
   <h4 class="d-inline-block bg-light px-3 py-2">
-    会員情報編集
+    <%= @customer.full_name %>さんの会員情報編集
   </h4>
 
   <%= render "layouts/error_messages", resource: @customer %>
-  <%= form_with model: @customer, url: customers_path do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
+    <div class="row form-group">
+      <div class="col-12 col-md-4 col-lg-3">
+        <span class="col-form-label">会員ID</span>
+      </div>
+      <div class="col-12 col-md-8 col-lg-9">
+        <%= @customer.id %>
+      </div>
+    </div>
+
     <div class="row form-group">
       <div class="col-12 col-md-2 mb-sm-n2 col-form-label">
         名前
@@ -76,6 +85,23 @@
         <%= f.email_field :email, class: "form-control", placeholder: "sample@example.com" %>
       </div>
     </div>
+
+    <div class="row form-group">
+      <div class="col-12 col-md-4 col-lg-3">
+        <%= f.label :is_deleted, class: "col-form-label" %>
+      </div>
+      <div class="col-12 col-md-8 col-lg-4">
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :is_deleted, false, class: "form-check-input", checked: true %>
+          <%= f.label :is_deleted, "有効", class: "form-check-label" %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :is_deleted, true, class: "form-check-input" %>
+          <%= f.label :is_deleted, "退会", class: "form-check-label" %>
+        </div>
+      </div>
+    </div>
+
 
     <div class="row form-group mt-4">
       <div class="col-3 offset-2">

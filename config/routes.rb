@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     get '/' => 'homes#top'
     resources :items, except: [:destroy]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show]
   end
 
   # 顧客用
