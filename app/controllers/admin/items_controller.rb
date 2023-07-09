@@ -1,6 +1,8 @@
 class Admin::ItemsController < ApplicationController
+  # 管理者としてログインしていないとアクセスできないようにする
   before_action :authenticate_admin!
   def index
+    # kaminariを利用してページネーションを行う
     @items = Item.all.page(params[:page]).per(10)
   end
 

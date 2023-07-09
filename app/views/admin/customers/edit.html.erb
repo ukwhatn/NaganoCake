@@ -3,6 +3,11 @@
     <%= @customer.full_name %>さんの会員情報編集
   </h4>
 
+  <!--
+    以下はレスポンシブ対応のためにGrid Systemを使用しています。
+    より簡易な実装を行いたい場合は、<table>を利用して実装することができます。
+  -->
+
   <%= render "layouts/error_messages", resource: @customer %>
   <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
     <div class="row form-group">

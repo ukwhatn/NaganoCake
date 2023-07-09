@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  # 新規登録の際に受け取るパラメーターを追加する
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -50,7 +51,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
-  # The path used after sign up.
+  # 顧客新規登録後のリダイレクト先は、application_controller.rbではなくここで設定する
   def after_sign_up_path_for(resource)
     customers_path
   end

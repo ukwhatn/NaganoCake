@@ -1,5 +1,9 @@
 # NaganoCake 解答コード
 
+## 環境
+- Ruby 3.1.2
+- Rails 6.1.7
+
 ## データ投入
 
 `rails db:seed`で、以下の処理が自動実行されます。

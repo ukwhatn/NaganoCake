@@ -2,13 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// ----------------------------------------
+// トップページ・Aboutページのカバー部分用のCSS
+// ----------------------------------------
+
 .top-cover {
+  // asset_pathを利用してassets/images内の画像を読み込む
+  // -> homes.scssをhomes.scss.erbに変更する必要がある
   background: url(<%= asset_path "top.jpg" %>) bottom;
   background-size: cover;
   min-height: 400px;
   padding: 5rem;
   border-radius: 10px;
 
+  // .top-cover-contentに適用されるCSS
   &-content {
     color: black;
     font-weight: bold;

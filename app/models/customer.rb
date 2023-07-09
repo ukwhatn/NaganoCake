@@ -23,17 +23,19 @@ class Customer < ApplicationRecord
   validates :telephone_number, presence: true
 
   # (必須ではない)以下のように、カナ指定や郵便番号、電話番号にはformat制約をかけるのが一般的
-  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
-  validates :postal_code, format: { with: /\A\d{7}\z/ }
-  validates :telephone_number, format: { with: /\A\d{10,11}\z/ }
-  # formatはpresenceとまとめて、以下のように書くこともできる
-  # validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/ }
+  # format: { with: /\A[ァ-ヶー－]+\z/ } は「カタカナ」を意味する
+  # format: { with: /\A\d{7}\z/ } は「7桁の数字」を意味する (ハイフンありの場合は /\A\d{3}-\d{4}\z/ とする)
+  # format: { with: /\A\d{10,11}\z/ } は「10桁または11桁の数字」を意味する
+  # allow_blank: true で「入力値があった場合のみ」実行されるようにしている（入力値の有無はpresence: trueでチェックしている）
+  validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "はカタカナで入力してください", allow_blank: true }
+  validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "はカタカナで入力してください", allow_blank: true }
+  validates :postal_code, format: { with: /\A\d{7}\z/, message: "はハイフンなし7桁の数字で入力してください", allow_blank: true }
+  validates :telephone_number, format: { with: /\A\d{10,11}\z/, message: "はハイフンなし10桁または11桁の数字で入力してください", allow_blank: true }
 
   # -------------
   # メソッド
   # -------------
-  # 顧客のフルネームを返すメソッド
+  # 顧客のフルネームや住所を返すメソッド
   # viewでいちいち書くよりもこちらの方が実装として適している
   def full_name
     last_name + " " + first_name
@@ -45,11 +47,5 @@ class Customer < ApplicationRecord
 
   def full_address
     "〒" + postal_code + " " + address
-  end
-
-  # 顧客がカートに入れた商品の中に、引数で渡された商品が含まれているかを判定するメソッド
-  # あればCartItemオブジェクトを返し、なければnilを返す
-  def has_in_cart(item)
-    cart_items.find_by(item_id: item.id)
   end
 end

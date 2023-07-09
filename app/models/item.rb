@@ -24,6 +24,7 @@ class Item < ApplicationRecord
   validate :image_type
 
   def image_type
+    # image.blob.content_typeは、アップロードされた画像のMIMEタイプを返す
     if image.blob && !image.blob.content_type.in?(%('image/jpeg image/png'))
       errors.add(:image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
     end
@@ -47,8 +48,7 @@ class Item < ApplicationRecord
 
   # 税込価格を取得するメソッド
   def with_tax_price
-    (price * 1.1).ceil
-    # ceilは切り上げ、floorが切り捨て、roundが四捨五入
+    (price * 1.1).ceil # ceilは切り上げ、floorが切り捨て、roundが四捨五入
   end
 
 end

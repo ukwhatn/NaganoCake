@@ -26,6 +26,9 @@ class Admin::SessionsController < Devise::SessionsController
   # end
 
   private
+
+  # 管理者側のログイン・ログアウト後のリダイレクト先は
+  # application_controller.rbではなく、ここで設定する
   def after_sign_in_path_for(resource)
     admin_path
   end

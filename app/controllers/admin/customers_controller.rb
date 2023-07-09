@@ -1,7 +1,9 @@
 class Admin::CustomersController < ApplicationController
+  # 管理者としてログインしていないとアクセスできないようにする
   before_action :authenticate_admin!
 
   def index
+    # kaminariを利用してページネーションを行う
     @customers = Customer.all.page(params[:page]).per(10)
   end
 
