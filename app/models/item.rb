@@ -7,6 +7,9 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
+  # <チャレンジ要件実装 : ジャンル機能>
+  belongs_to :genre
+
   # -------------
   # バリデーション
   # -------------
@@ -29,6 +32,11 @@ class Item < ApplicationRecord
       errors.add(:image, 'はJPEGまたはPNG形式を選択してアップロードしてください')
     end
   end
+
+  # <チャレンジ要件実装 : 販売ステータス>
+  # boolean型のカラムには、presence:trueを利用すると、falseがエラーになってしまう
+  # そのため、inclusionを利用して、trueまたはfalseのみを許可するようにしている
+  validates :is_active, inclusion: { in: [true, false] }
 
   # -------------
   # メソッド

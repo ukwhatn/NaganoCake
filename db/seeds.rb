@@ -19,7 +19,7 @@ admins.each do |admin|
   end
 end
 
-# 顧客アカウント作成
+# 顧客アカウント・アドレス作成
 customers = {
   'taro' => %w[太郎 タロウ],
   'hanako' => %w[花子 ハナコ],
@@ -34,6 +34,19 @@ customers = {
   'juuro' => %w[十郎 ジュウロウ]
 }
 
+addresses = [
+  {
+    name: '別住所①',
+    postal_code: '1234567',
+    address: '東京都千代田区千代田1-1-1'
+  },
+  {
+    name: '別住所②',
+    postal_code: '1234567',
+    address: '東京都千代田区千代田2-2-2'
+  },
+]
+
 customers.each_with_index do |(key, value), i|
   customer = {
     email: "#{key}@dwc.com",
@@ -47,95 +60,109 @@ customers.each_with_index do |(key, value), i|
     telephone_number: "090123456#{format('%02d', i + 1)}"
   }
   if Customer.find_by(email: customer[:email]).nil?
-    Customer.create!(customer)
+    c = Customer.create!(customer)
+    addresses.each do |address|
+      c.addresses.create!(address)
+    end
   end
 end
+
 # Item作成
 items = {
-  'butter_cookie' => {
-    name: 'バタークッキー',
-    description: 'バターの風味が香るクッキーです。',
-    price: 300,
+  "ケーキ" => {
+    'chocolate_cake' => {
+      name: 'チョコレートケーキ',
+      description: 'チョコレートの風味が香るケーキです。',
+      price: 400,
+    },
+    'strawberry_cake' => {
+      name: '苺のショートケーキ',
+      description: '苺の風味が香るケーキです。',
+      price: 400,
+    },
   },
-  'chocolate_cake' => {
-    name: 'チョコレートケーキ',
-    description: 'チョコレートの風味が香るケーキです。',
-    price: 400,
+  "焼き菓子" => {
+    'butter_cookie' => {
+      name: 'バタークッキー',
+      description: 'バターの風味が香るクッキーです。',
+      price: 300,
+    },
+    'chocolate_cookie' => {
+      name: 'チョコレートクッキー',
+      description: 'チョコレートの風味が香るクッキーです。',
+      price: 300,
+    },
+    'waffle' => {
+      name: 'ワッフル',
+      description: '甘いワッフルです。',
+      price: 200,
+    }
   },
-  'chocolate_cookie' => {
-    name: 'チョコレートクッキー',
-    description: 'チョコレートの風味が香るクッキーです。',
-    price: 300,
+  "和菓子" => {
+    'dorayaki' => {
+      name: 'どら焼き',
+      description: '甘いどら焼きです。',
+      price: 250,
+    },
+    'goma_daifuku' => {
+      name: '胡麻大福',
+      description: '胡麻の風味が香る大福です。',
+      price: 200,
+    },
+    'imagawa_yaki' => {
+      name: '今川焼き',
+      description: '甘い今川焼きです。',
+      price: 200,
+    },
+    'konpeitou' => {
+      name: '金平糖',
+      description: '甘い金平糖です。',
+      price: 100,
+    },
+    'mitarashi' => {
+      name: 'みたらし団子',
+      description: '甘いみたらし団子です。',
+      price: 200,
+    },
+    'monaka' => {
+      name: '最中',
+      description: '甘い最中です。',
+      price: 200,
+    },
+    'sakura_mochi' => {
+      name: '桜餅',
+      description: '桜の風味が香る餅です。',
+      price: 200,
+    },
+    'taiyaki' => {
+      name: 'たい焼き',
+      description: '甘いたい焼きです。',
+      price: 200,
+    },
   },
-  'donuts' => {
-    name: 'ドーナツ',
-    description: '甘いドーナツです。',
-    price: 200,
+  "その他" => {
+    'ekrea' => {
+      name: 'エクレア',
+      description: '甘いエクレアです。',
+      price: 300,
+    },
+    'donuts' => {
+      name: 'ドーナツ',
+      description: '甘いドーナツです。',
+      price: 200,
+    },
   },
-  'dorayaki' => {
-    name: 'どら焼き',
-    description: '甘いどら焼きです。',
-    price: 250,
-  },
-  'ekrea' => {
-    name: 'エクレア',
-    description: '甘いエクレアです。',
-    price: 300,
-  },
-  'goma_daifuku' => {
-    name: '胡麻大福',
-    description: '胡麻の風味が香る大福です。',
-    price: 200,
-  },
-  'imagawa_yaki' => {
-    name: '今川焼き',
-    description: '甘い今川焼きです。',
-    price: 200,
-  },
-  'konpeitou' => {
-    name: '金平糖',
-    description: '甘い金平糖です。',
-    price: 100,
-  },
-  'mitarashi' => {
-    name: 'みたらし団子',
-    description: '甘いみたらし団子です。',
-    price: 200,
-  },
-  'monaka' => {
-    name: '最中',
-    description: '甘い最中です。',
-    price: 200,
-  },
-  'sakura_mochi' => {
-    name: '桜餅',
-    description: '桜の風味が香る餅です。',
-    price: 200,
-  },
-  'strawberry_cake' => {
-    name: '苺のショートケーキ',
-    description: '苺の風味が香るケーキです。',
-    price: 400,
-  },
-  'taiyaki' => {
-    name: 'たい焼き',
-    description: '甘いたい焼きです。',
-    price: 200,
-  },
-  'waffle' => {
-    name: 'ワッフル',
-    description: '甘いワッフルです。',
-    price: 200,
-  }
 }
 
-items.each do |key, value|
-  if Item.find_by(name: value[:name]).nil?
-    item = Item.create!(
-      name: value[:name],
-      description: value[:description],
-      price: value[:price]
-    )
-    item.image.attach(io: File.open(Rails.root.join("db/fixtures/#{key}.jpg")), filename: "#{key}.jpg")
+items.each do |genre_name, genre_items|
+  genre = Genre.find_by(name: genre_name)
+  if genre.nil?
+    genre = Genre.create!(name: genre_name)
+  end
+  genre_items.each do |key, value|
+    if Item.find_by(name: value[:name]).nil?
+      item = genre.items.create!(value)
+      item.image.attach(io: File.open(Rails.root.join("db/fixtures/#{key}.jpg")), filename: "#{key}.jpg")
+    end
   end
 end

@@ -1,0 +1,46 @@
+<div class="col-12 col-lg-4 offset-lg-2">
+  <h4 class="d-inline-block bg-light px-3 py-2">
+    ジャンル一覧・追加
+  </h4>
+  <%= render "layouts/error_messages", resource: @new_genre %>
+  <%= form_with model: @new_genre, url: admin_genres_path do |f| %>
+    <table class="table-borderless">
+      <tbody>
+      <tr>
+        <th>
+          ジャンル名
+        </th>
+        <td class="px-3">
+          <%= f.text_field :name, class: "form-control w-100" %>
+        </td>
+        <td>
+          <%= f.submit "新規登録", class: "btn btn-success font-weight-bold" %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <% end %>
+  <table class="table mt-4">
+    <thead class="bg-light">
+    <tr>
+      <th>
+        ジャンル名
+      </th>
+      <th>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+        <td>
+          <%= genre.name %>
+        </td>
+        <td>
+          <%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-success" %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
