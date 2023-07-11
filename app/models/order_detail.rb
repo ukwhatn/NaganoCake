@@ -20,6 +20,10 @@ class OrderDetail < ApplicationRecord
   # scopeを利用すると、同じorder_idの中でitem_idが重複しないようにバリデーションを設定できる
   validates :item_id, uniqueness: { scope: :order_id }
 
+  # <チャレンジ機能実装: 製作ステータス>
+  # enumを利用して製作ステータスを定義する
+  enum making_status: { impossible: 0, waiting: 1, in_production: 2, complete: 3 }
+
   # -------------
   # メソッド
   # -------------

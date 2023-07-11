@@ -5,6 +5,10 @@ class Admin::HomesController < ApplicationController
   def top
     # kaminariを利用してページネーションを行う
     # reverse_orderをつけると、逆順（新しい順）に並べることができる
-    @orders = Order.page(params[:page]).per(10).reverse_order
+    if params[:customer_id]
+      @orders = Order.where(customer_id: params[:customer_id]).page(params[:page]).per(10).reverse_order
+    else
+      @orders = Order.page(params[:page]).per(10).reverse_order
+    end
   end
 end
