@@ -15,6 +15,9 @@
       <th class="p-2">
         注文個数
       </th>
+      <th class="p-2">
+        注文ステータス
+      </th>
     </tr>
     </thead>
     <tbody>
@@ -28,6 +31,9 @@
         </td>
         <td class="p-2">
           <%= order.order_details.sum(:amount) %>個
+        </td>
+        <td class="p-2">
+          <%= order.status_i18n %>
         </td>
       </tr>
     <% end %>

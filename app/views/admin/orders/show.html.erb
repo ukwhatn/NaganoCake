@@ -38,6 +38,21 @@
             <%= @order.payment_method_i18n %>
           </td>
         </tr>
+        <tr>
+          <th class="p-2">
+            注文ステータス
+          </th>
+          <td class="p-2">
+            <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
+              <div class="input-group col-md-6 pl-0">
+                <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] }, {}, class: "form-control" %>
+                <div class="input-group-append">
+                  <%= f.submit "更新", class: "btn btn-success" %>
+                </div>
+              </div>
+            <% end %>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
@@ -58,6 +73,9 @@
           <th class="p-2">
             小計
           </th>
+          <th class="p-2">
+            製作ステータス
+          </th>
         </tr>
         </thead>
         <tbody>
@@ -75,12 +93,22 @@
             <td class="p-2">
               <%= order_detail.subtotal.to_s(:delimited) %>
             </td>
+            <td class="p-2">
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
+                <div class="input-group">
+                  <%= f.select :making_status, OrderDetail.making_statuses.keys.map { |k| [I18n.t("enums.order_detail.making_status.#{k}"), k] }, {}, class: "form-control" %>
+                  <div class="input-group-append">
+                    <%= f.submit "更新", class: "btn btn-success" %>
+                  </div>
+                </div>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         </tbody>
       </table>
     </div>
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-4">
       <table class="w-100">
         <tr>
           <th class="p-2">

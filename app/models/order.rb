@@ -30,6 +30,10 @@ class Order < ApplicationRecord
   # enumを利用して支払方法を定義する
   enum payment_method: { credit_card: 0, transfer: 1 }
 
+  # <チャレンジ機能実装: 注文ステータス>
+  # enumを利用して注文ステータスを定義する
+  enum status: { waiting_for_payment: 0, payment_confirmation: 1, in_production: 2, preparing_for_shipping: 3, shipped: 4 }
+
   # -------------
   # メソッド
   # -------------

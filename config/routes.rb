@@ -22,13 +22,21 @@ Rails.application.routes.draw do
         get 'thanks'
       end
     end
+
+    # <チャレンジ機能実装: 配送先登録>
+    resources :addresses, except: [:new, :show]
   end
 
   namespace :admin do
     get '/' => 'homes#top'
     resources :items, except: [:destroy]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show]
+    resources :orders, only: [:show, :update]
+
+    # <チャレンジ機能実装: ジャンル機能>
+    resources :genres, only: [:index, :create, :edit, :update]
+    # <チャレンジ機能実装: 製作ステータス>
+    resources :order_details, only: [:update]
   end
 
   # 顧客用

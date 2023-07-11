@@ -4,6 +4,19 @@ ja:
       payment_method:
         credit_card: 'クレジットカード'
         transfer: '銀行振込'
+      status:
+        waiting_for_payment: '入金待ち'
+        payment_confirmation: '入金確認'
+        in_production: '製作中'
+        preparing_for_shipping: '発送準備中'
+        shipped: '発送済み'
+    order_detail:
+      making_status:
+        impossible: '着手不可'
+        waiting: '製作待ち'
+        in_production: '製作中'
+        complete: '製作完了'
+
   activerecord:
     errors:
       messages:
@@ -12,13 +25,19 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     models:
+      address: 配送先
       admin: 管理者
       cart_item: カート内商品
       customer: 顧客
+      genre: ジャンル
       item: 商品
       order: 注文
       order_detail: 注文詳細
     attributes:
+      address:
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛名
       admin:
         email: メールアドレス
         password: パスワード
@@ -38,6 +57,23 @@ ja:
         introduction: 商品説明
         price: 税抜価格
         image: 商品画像
+        is_active: 販売ステータス
+      genre:
+        name: ジャンル名
+      cart_item:
+        amount: 数量
+      order:
+        postal_code: 郵便番号
+        address: 住所
+        name: 宛名
+        shipping_cost: 配送料
+        total_payment: 合計金額
+        payment_method: 支払方法
+        status: 注文ステータス
+      order_details:
+        price: 税込価格
+        amount: 数量
+        making_status: 製作ステータス
   date:
     abbr_day_names:
       - 日

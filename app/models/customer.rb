@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   # 顧客が削除されても、その顧客が注文した情報は残る
   has_many :orders
   has_many :cart_items, dependent: :destroy
+  has_many :addresses, dependent: :destroy
 
   # -------------
   # バリデーション

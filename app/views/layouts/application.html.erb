@@ -46,6 +46,12 @@
           </li>
 
           <li class="nav-item">
+            <%= link_to admin_genres_path, class: "nav-link border rounded px-3 py-2 mx-2" do %>
+              ジャンル一覧
+            <% end %>
+          </li>
+
+          <li class="nav-item">
             <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link border rounded px-3 py-2 mx-2" do %>
               ログアウト
             <% end %>
