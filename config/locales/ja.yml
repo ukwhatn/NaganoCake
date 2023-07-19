@@ -35,7 +35,7 @@ ja:
         is_deleted: 退会ステータス
       item:
         name: 商品名
-        description: 商品説明
+        introduction: 商品説明
         price: 税抜価格
         image: 商品画像
   date:
