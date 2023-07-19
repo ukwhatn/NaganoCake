@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       end
     end
 
-    # <チャレンジ機能実装: 配送先登録>
+    # 配送先登録
     resources :addresses, except: [:new, :show]
   end
 
@@ -33,9 +33,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
 
-    # <チャレンジ機能実装: ジャンル機能>
+    # ジャンル機能
     resources :genres, only: [:index, :create, :edit, :update]
-    # <チャレンジ機能実装: 製作ステータス>
+    # 製作ステータス
     resources :order_details, only: [:update]
   end
 

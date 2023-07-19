@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  # <チャレンジ機能実装: 配送先登録>
+  # 配送先登録
 
   # -------------
   # アソシエーション
