@@ -3,7 +3,7 @@
     <h4 class="d-inline-block bg-light px-3 py-2">
       ショッピングカート
     </h4>
-    <%= link_to destroy_all_cart_items_path, method: :delete, class: "btn btn-danger px-4 py-2" do %>
+    <%= link_to destroy_all_cart_items_path, method: :delete, class: "btn btn-danger px-4 py-2", data: { confirm: "カートを空にしますか？" } do %>
       <i class="fa-solid fa-trash"></i> カートを空にする
     <% end %>
   </div>
@@ -28,7 +28,7 @@
       <tr>
         <td class="p-2">
           <%= image_tag cart_item.item.get_image("100x100"), class: "d-inline-block pr-3" %>
-          <%= link_to cart_item.item.name, item_path(cart_item.item), class:"font-weight-bold text-body" %>
+          <%= link_to cart_item.item.name, item_path(cart_item.item), class: "font-weight-bold text-body" %>
         </td>
         <td class="p-2">
           <%= cart_item.item.with_tax_price %>
