@@ -11,7 +11,7 @@ class Public::CartItemsController < ApplicationController
 
   def create
     # 同じ商品が同じ顧客のカートに存在しているかを確認
-    # 存在した場合はレコードのリストが、存在しない場合はnilが返る
+    # 存在した場合はレコードの最初の1件が、存在しない場合はnilが返る
     exist_cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id], customer_id: current_customer.id)
 
     # nilの(既存のカート商品がない)場合はif文でfalseとなるので、else以下の処理が実行される
